@@ -1,0 +1,18 @@
+.navbar-brand{
+    color:#6C63FF;
+    font-weight:bold;
+}
+
+.nav-btn{
+    border:1px solid #00BFA6;
+    color:#00BFA6;
+    transition: 0.5s ease-in-out;
+}
+
+.nav-btn:hover{
+    background-color: #00BFA6;
+    color:white;
+}
+.nav-item:hover{
+   border-bottom: 1px solid #6C63FF ; 
+}

@@ -1,0 +1,19 @@
+.form-label{
+    color:#6C63FF;
+    font-weight: 500;
+}
+
+h3, h6{
+    color:#575757
+}
+
+.submit-btn{
+    background-color: #00BFA6;
+    color: white;
+}
+
+
+.back-btn{
+    background-color: #3F3D56;
+    color: white;
+}
