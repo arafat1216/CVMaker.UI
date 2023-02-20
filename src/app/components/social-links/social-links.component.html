@@ -1,0 +1,26 @@
+<div class="container-fluid my-3">
+    <div class="row">
+      <div class="col-md-3 text-center">
+        <img src="../../../assets/avatar.svg" alt="" class="img-fluid" width="100px">
+        <h6>{{userName}}</h6>
+      </div>
+      <div class="col-md-9">
+          <h3>Social Links</h3>
+          <div class="col-md-6 my-3">
+              <form #SocialLinksForm="ngForm" (ngSubmit)="onSubmit()">
+                  <div class="mb-3">
+                      <label for="linkedinUrl" class="form-label">Linkedin Url</label>
+                      <input type="text" class="form-control" id="linkedinUrl" [(ngModel)]="socialLinks.linkedinUrl" name="socialLinks.linkedinUrl" #name="ngModel">
+                  </div>
+                  <div class="mb-3">
+                    <label for="githubUrl" class="form-label">Github Url</label>
+                    <input type="text" class="form-control" id="githubUrl" [(ngModel)]="socialLinks.githubUrl" name="socialLinks.githubUrl" #name="ngModel">
+                    </div>
+                  <button type="submit" class="btn submit-btn me-3" [disabled]="SocialLinksForm.invalid">Save</button>
+                  <a class="btn back-btn" routerLink="/dashboard">Back</a>
+                </form>
+          </div>
+      </div>
+    </div>    
+  </div>
+  

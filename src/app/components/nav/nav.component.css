@@ -16,3 +16,17 @@
 .nav-item:hover{
    border-bottom: 1px solid #6C63FF ; 
 }
+
+.dropdown-menu{
+    background-color: #6C63FF;
+}
+.dropdown-item{
+    color:white
+}
+
+.dropdown-item:hover{
+    color:#6C63FF
+}
+.dropdown-divider{
+    background-color: white;
+}

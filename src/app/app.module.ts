@@ -10,6 +10,12 @@ import OktaAuth from '@okta/okta-auth-js';
 import { OktaAuthModule } from '@okta/okta-angular';
 import { OKTA_CONFIG } from '@okta/okta-angular';
 import { ProfileComponent } from './components/profile/profile.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { FormsModule } from '@angular/forms';
+import { EducationComponent } from './components/education/education.component';
+import { SocialLinksComponent } from './components/social-links/social-links.component';
+import { SummaryComponent } from './components/summary/summary.component';
 
 const config = {
   issuer: 'https://dev-64581829.okta.com/oauth2/default',
@@ -26,17 +32,27 @@ const oktaAuth = new OktaAuth(config);
     WelcomeComponent,
     NavComponent,
     DashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    EducationComponent,
+    SocialLinksComponent,
+    SummaryComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    OktaAuthModule
+    OktaAuthModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     {
       provide: OKTA_CONFIG,
       useValue: {oktaAuth}
+    },
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:AuthInterceptor,
+      multi:true
     }
   ],
   bootstrap: [AppComponent]

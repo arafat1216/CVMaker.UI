@@ -1,4 +1,3 @@
-<app-nav></app-nav>
 <div class="container-fluid my-3">
   <div class="row">
     <div class="col-md-3 text-center">
@@ -8,37 +7,37 @@
     <div class="col-md-9">
         <h3>Profile Settings</h3>
         <div class="col-md-6 my-3">
-            <form>
+            <form #profileForm="ngForm" (ngSubmit)="onSubmit()">
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Full Name</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" >
+                    <label for="fullName" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="fullName" [(ngModel)]="profile.fullName" name="profile.fullName" #name="ngModel" required>
+                    <div class="form-text text-danger" *ngIf="name.touched && name.invalid">
+                      Full Name is required
+                    </div>
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" >
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" [(ngModel)]="profile.email" name="profile.email" #email="ngModel" required email>
+                  <div class="form-text text-danger" *ngIf="email.touched && email.invalid">
+                      <div *ngIf="email.errors?.['required']">Email is required</div>
+                      <div *ngIf="email.errors?.['email']">Invalid Email</div>
+                  </div>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Phone No</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" >
+                  <label for="phone" class="form-label">Phone No</label>
+                  <input type="text" class="form-control" id="phone" [(ngModel)]="profile.phoneNo" name="profile.phone" #phone="ngModel" required pattern="(^(01){1}[3456789]{1}(\d){8})$">
+                  <div class="form-text text-danger" *ngIf="phone.touched && phone.invalid">
+                      <div *ngIf="phone.errors?.['required']">Phone No is required</div>
+                      <div *ngIf="phone.errors?.['pattern']">Invalid Phone No</div>
+                  </div>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Address</label>
-                    <textarea name="" id="exampleInputEmail1" rows="3" class="form-control"></textarea>
+                <label for="address" class="form-label">Address</label>
+                <textarea  class="form-control" id="address" [(ngModel)]="profile.address" name="profile.address" #address="ngModel" required></textarea>
+                <div class="form-text text-danger" *ngIf="address.touched && address.invalid">Address is required</div>
                 </div>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Linkedin Url</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" >
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Github Url</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" >
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Summary</label>
-                    <textarea name="" id="exampleInputEmail1" rows="3" class="form-control"></textarea>
-                </div>
-                <button type="submit" class="btn submit-btn me-3">Submit</button>
-                <button class="btn back-btn">Back</button>
+                <button type="submit" class="btn submit-btn me-3" [disabled]="profileForm.invalid">Save</button>
+                <a class="btn back-btn" routerLink="/dashboard">Back</a>
               </form>
         </div>
     </div>

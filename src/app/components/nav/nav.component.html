@@ -12,23 +12,33 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/profile" *ngIf="(authStateService.authState$ | async)?.isAuthenticated">Profile</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="dashboard" *ngIf="(authStateService.authState$ | async)?.isAuthenticated">Work Experience</a>
+          <!-- start -->
+          <li class="nav-item dropdown" *ngIf="(authStateService.authState$ | async)?.isAuthenticated">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Manage CV
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Work Experience</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" routerLink="/education">Education</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Skills</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Projects</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Courses</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" routerLink="/social-links">Social Links</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" routerLink="/summary">Summary</a></li>
+              <li><hr class="dropdown-divider"></li>
+            </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="dashboard" *ngIf="(authStateService.authState$ | async)?.isAuthenticated">Education</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="dashboard" *ngIf="(authStateService.authState$ | async)?.isAuthenticated">Skills</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="dashboard" *ngIf="(authStateService.authState$ | async)?.isAuthenticated">Projects</a>
-          </li>
+          <!-- end -->
         </ul>
         <div class="d-flex">
           <button class="btn nav-btn" *ngIf="!(authStateService.authState$ | async)?.isAuthenticated" (click)="Login()">Login</button>
           <button class="btn nav-btn" *ngIf="(authStateService.authState$ | async)?.isAuthenticated" (click)="Logout()">Logout</button>
-          
         </div>
         
       </div>

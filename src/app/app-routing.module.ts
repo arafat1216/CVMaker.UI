@@ -1,3 +1,6 @@
+import { SummaryComponent } from './components/summary/summary.component';
+import { SocialLinksComponent } from './components/social-links/social-links.component';
+import { EducationComponent } from './components/education/education.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
@@ -19,6 +22,21 @@ const routes: Routes = [
   {
     path:'profile',
     component:ProfileComponent,
+    canActivate:[OktaAuthGuard],
+  },
+  {
+    path:'education',
+    component:EducationComponent,
+    canActivate:[OktaAuthGuard],
+  },
+  {
+    path:'social-links',
+    component:SocialLinksComponent,
+    canActivate:[OktaAuthGuard],
+  },
+  {
+    path:'summary',
+    component:SummaryComponent,
     canActivate:[OktaAuthGuard],
   },
   {
