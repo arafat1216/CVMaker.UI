@@ -1,7 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { OKTA_AUTH } from '@okta/okta-angular';
 import OktaAuth from '@okta/okta-auth-js';
 import { SocialLinks } from 'src/app/models/social-links.model';
+import { SocialLinksService } from 'src/app/services/social-links.service';
 
 @Component({
   selector: 'app-social-links',
@@ -16,14 +18,30 @@ export class SocialLinksComponent implements OnInit {
     githubUrl: ''
   };
 
-  constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth){}
+  constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth, private socialLinksService: SocialLinksService, private router: Router){}
 
   async ngOnInit(){
     let userclaims = await this.oktaAuth.getUser();
     this.userName  = userclaims.name;
+    this.getSocialLinks();
   }
   
   onSubmit(){
-    console.log(this.socialLinks)
+    this.socialLinksService.updateSocialLinks(this.socialLinks).subscribe({
+      next:(result) =>{
+        this.router.navigate(['/dashboard']);
+      }
+    })
+    
   }
+
+  private getSocialLinks(){
+    this.socialLinksService.getSocialLinks().subscribe({
+      next: (result) =>{
+        this.socialLinks = result;
+      }
+    })
+  }
+
+  
 }
