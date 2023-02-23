@@ -1,3 +1,3 @@
 export interface Summary {
-    summary: string
+    description: string,
 }

@@ -1,1 +1,23 @@
-<p>summary works!</p>
+<div class="container-fluid my-3">
+    <div class="row">
+      <div class="col-md-3 text-center">
+        <img src="../../../assets/avatar.svg" alt="" class="img-fluid" width="100px">
+        <h6>{{userName}}</h6>
+      </div>
+      <div class="col-md-9">
+          <h3>Summary</h3>
+          <div class="col-md-6 my-3">
+              <form #SummaryForm="ngForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label for="address" class="form-label">Description</label>
+                    <textarea  class="form-control" id="address" [(ngModel)]="summary.description" name="summary.description" #description="ngModel" rows="7" required></textarea>
+                    <div class="form-text text-danger" *ngIf="description.touched && description.invalid">Summary is required</div>
+                    </div>
+                  <button type="submit" class="btn submit-btn me-3" [disabled]="SummaryForm.invalid">Save</button>
+                  <a class="btn back-btn" routerLink="/dashboard">Back</a>
+                </form>
+          </div>
+      </div>
+    </div>    
+  </div>
+  
