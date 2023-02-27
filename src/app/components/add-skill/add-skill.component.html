@@ -1,0 +1,26 @@
+<div class="container-fluid my-3">
+    <div class="row">
+      <div class="col-md-3 text-center">
+        <img src="../../../assets/avatar.svg" alt="" class="img-fluid" width="100px">
+        <h6>{{userName}}</h6>
+      </div>
+      <div class="col-md-9">
+          <h3>Add Skill</h3>
+          <div class="col-md-6 my-3">
+              <form #AddSkillForm="ngForm" (ngSubmit)="onSubmit()">
+                  <div class="mb-3">
+                      <label for="Name" class="form-label">Name</label>
+                      <input type="text" class="form-control" id="Name" [(ngModel)]="addSkill.name" name="addSkill.name" #name="ngModel" required>
+                      <div class="form-text text-danger" *ngIf="name.touched && name.invalid">
+                        Name is required
+                      </div>
+                  </div>
+                  
+                  <button type="submit" class="btn submit-btn me-3" [disabled]="AddSkillForm.invalid">Save</button>
+                  <a class="btn back-btn" routerLink="/skills">Back</a>
+                </form>
+          </div>
+      </div>
+    </div>    
+  </div>
+  

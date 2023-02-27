@@ -1,3 +1,7 @@
+import { DeleteSkillComponent } from './components/delete-skill/delete-skill.component';
+import { UpdateSkillComponent } from './components/update-skill/update-skill.component';
+import { AddSkillComponent } from './components/add-skill/add-skill.component';
+import { SkillListComponent } from './components/skill-list/skill-list.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { SocialLinksComponent } from './components/social-links/social-links.component';
 import { EducationComponent } from './components/education/education.component';
@@ -37,6 +41,26 @@ const routes: Routes = [
   {
     path:'summary',
     component:SummaryComponent,
+    canActivate:[OktaAuthGuard],
+  },
+  {
+    path:'skills',
+    component:SkillListComponent,
+    canActivate:[OktaAuthGuard],
+  },
+  {
+    path:'skills/add',
+    component:AddSkillComponent,
+    canActivate:[OktaAuthGuard],
+  },
+  {
+    path:'skills/edit/:id',
+    component:UpdateSkillComponent,
+    canActivate:[OktaAuthGuard],
+  },
+  {
+    path:'skills/delete/:id',
+    component:DeleteSkillComponent,
     canActivate:[OktaAuthGuard],
   },
   {

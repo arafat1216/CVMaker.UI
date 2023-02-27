@@ -16,6 +16,10 @@ import { FormsModule } from '@angular/forms';
 import { EducationComponent } from './components/education/education.component';
 import { SocialLinksComponent } from './components/social-links/social-links.component';
 import { SummaryComponent } from './components/summary/summary.component';
+import { SkillListComponent } from './components/skill-list/skill-list.component';
+import { AddSkillComponent } from './components/add-skill/add-skill.component';
+import { UpdateSkillComponent } from './components/update-skill/update-skill.component';
+import { DeleteSkillComponent } from './components/delete-skill/delete-skill.component';
 
 const config = {
   issuer: 'https://dev-64581829.okta.com/oauth2/default',
@@ -35,7 +39,11 @@ const oktaAuth = new OktaAuth(config);
     ProfileComponent,
     EducationComponent,
     SocialLinksComponent,
-    SummaryComponent
+    SummaryComponent,
+    SkillListComponent,
+    AddSkillComponent,
+    UpdateSkillComponent,
+    DeleteSkillComponent
   ],
   imports: [
     BrowserModule,
