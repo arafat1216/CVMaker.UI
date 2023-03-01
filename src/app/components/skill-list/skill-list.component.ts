@@ -27,7 +27,6 @@ export class SkillListComponent implements OnInit{
 
   onDelete(event:any){
     this.itemId = event;
-    console.log(this.itemId);
   }
 
   async onConfirm(){

@@ -1,0 +1,12 @@
+h3, h5, h6, span{
+    color:#575757
+}
+
+.add-btn{
+    background-color: #6C63FF;
+    color: white;
+}
+
+.card{
+    border-top: 5px solid #6C63FF;
+}

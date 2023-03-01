@@ -1,3 +1,6 @@
+import { EditProjectComponent } from './components/edit-project/edit-project.component';
+import { AddProjectComponent } from './components/add-project/add-project.component';
+import { ProjectListComponent } from './components/project-list/project-list.component';
 import { DeleteSkillComponent } from './components/delete-skill/delete-skill.component';
 import { UpdateSkillComponent } from './components/update-skill/update-skill.component';
 import { AddSkillComponent } from './components/add-skill/add-skill.component';
@@ -59,8 +62,18 @@ const routes: Routes = [
     canActivate:[OktaAuthGuard],
   },
   {
-    path:'skills/delete/:id',
-    component:DeleteSkillComponent,
+    path:'projects',
+    component:ProjectListComponent,
+    canActivate:[OktaAuthGuard],
+  },
+  {
+    path:'projects/add',
+    component:AddProjectComponent,
+    canActivate:[OktaAuthGuard],
+  },
+  {
+    path:'projects/edit/:id',
+    component:EditProjectComponent,
     canActivate:[OktaAuthGuard],
   },
   {
