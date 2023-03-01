@@ -1,15 +1,15 @@
 <div class="container-fluid my-3">
     <div class="header d-flex mb-3">
-        <h3>Skills List</h3>
+        <h3>Courses List</h3>
         <div class="ms-auto">
-            <a class="btn add-btn" routerLink="/skills/add">Add Skill</a>
+            <a class="btn add-btn" routerLink="/courses/add">Add Course</a>
         </div> 
     </div>
-    <div class="skill-details d-md-flex row">
-     <div class="col-md-4 mb-5" *ngFor="let item of skills">
+    <div class="course-details d-md-flex row">
+     <div class="col-md-4 mb-5" *ngFor="let item of courses">
          <div class="card shadow">
              <div class=" ms-auto">
-                 <a class="btn m-2 edit-btn" [routerLink]="['/skills','edit',item.id]">
+                 <a class="btn  m-2 edit-btn" [routerLink]="['/courses','edit',item.id]">
                     <i class="bi bi-pencil text-white"></i>
                 </a>
                 <button type="button" class="btn btn-danger m-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onDelete(item.id)">
@@ -18,11 +18,13 @@
              </div>
              <div class="card-body">
                 <h5>{{item.name}}</h5> 
+                <span *ngIf="item.institute.length"><b>Institute:</b> {{item.institute}}</span><br>
+                <span *ngIf="item.link.length"><b>Link:</b> {{item.link}}</span><br>
              </div>
            </div>
          </div> 
-         <div class="alert alert-danger w-50 mx-auto" role="alert" *ngIf="!skills.length">
-            No Skill Found
+         <div class="alert alert-danger w-50 mx-auto" role="alert" *ngIf="!courses.length">
+            No Course Found
         </div>
     </div>
      <!-- Modal -->
@@ -47,3 +49,4 @@
  </div>
  
  
+

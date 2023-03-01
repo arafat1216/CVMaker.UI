@@ -23,6 +23,9 @@ import { DeleteSkillComponent } from './components/delete-skill/delete-skill.com
 import { ProjectListComponent } from './components/project-list/project-list.component';
 import { AddProjectComponent } from './components/add-project/add-project.component';
 import { EditProjectComponent } from './components/edit-project/edit-project.component';
+import { CourseListComponent } from './components/course-list/course-list.component';
+import { AddCourseComponent } from './components/add-course/add-course.component';
+import { EditCourseComponent } from './components/edit-course/edit-course.component';
 
 const config = {
   issuer: 'https://dev-64581829.okta.com/oauth2/default',
@@ -49,7 +52,10 @@ const oktaAuth = new OktaAuth(config);
     DeleteSkillComponent,
     ProjectListComponent,
     AddProjectComponent,
-    EditProjectComponent
+    EditProjectComponent,
+    CourseListComponent,
+    AddCourseComponent,
+    EditCourseComponent
   ],
   imports: [
     BrowserModule,

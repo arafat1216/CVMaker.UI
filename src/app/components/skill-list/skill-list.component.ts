@@ -29,7 +29,7 @@ export class SkillListComponent implements OnInit{
     this.itemId = event;
   }
 
-  async onConfirm(){
+  onConfirm(){
     this.skillService.deleteSkill(this.itemId).subscribe({
       next:(result)=>{
         this.ngOnInit();

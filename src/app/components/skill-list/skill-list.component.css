@@ -10,3 +10,11 @@ h3, h6, span{
 .card{
     border-top: 5px solid #6C63FF;
 }
+
+.edit-btn{
+    background-color: #3F3D56;
+}
+
+.edit-btn:hover{
+    opacity: 0.9;
+}

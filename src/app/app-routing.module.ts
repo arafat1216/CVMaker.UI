@@ -1,3 +1,6 @@
+import { EditCourseComponent } from './components/edit-course/edit-course.component';
+import { AddCourseComponent } from './components/add-course/add-course.component';
+import { CourseListComponent } from './components/course-list/course-list.component';
 import { EditProjectComponent } from './components/edit-project/edit-project.component';
 import { AddProjectComponent } from './components/add-project/add-project.component';
 import { ProjectListComponent } from './components/project-list/project-list.component';
@@ -74,6 +77,21 @@ const routes: Routes = [
   {
     path:'projects/edit/:id',
     component:EditProjectComponent,
+    canActivate:[OktaAuthGuard],
+  },
+  {
+    path:'courses',
+    component:CourseListComponent,
+    canActivate:[OktaAuthGuard],
+  },
+  {
+    path:'courses/add',
+    component:AddCourseComponent,
+    canActivate:[OktaAuthGuard],
+  },
+  {
+    path:'courses/edit/:id',
+    component:EditCourseComponent,
     canActivate:[OktaAuthGuard],
   },
   {
