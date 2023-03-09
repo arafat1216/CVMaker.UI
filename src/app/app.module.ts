@@ -13,7 +13,6 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { FormsModule } from '@angular/forms';
-import { EducationComponent } from './components/education/education.component';
 import { SocialLinksComponent } from './components/social-links/social-links.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { SkillListComponent } from './components/skill-list/skill-list.component';
@@ -26,10 +25,13 @@ import { EditProjectComponent } from './components/edit-project/edit-project.com
 import { CourseListComponent } from './components/course-list/course-list.component';
 import { AddCourseComponent } from './components/add-course/add-course.component';
 import { EditCourseComponent } from './components/edit-course/edit-course.component';
+import { DegreesListComponent } from './components/degrees-list/degrees-list.component';
+import { AddDegreeComponent } from './components/add-degree/add-degree.component';
+import { EditDegreeComponent } from './components/edit-degree/edit-degree.component';
 
 const config = {
   issuer: 'https://dev-64581829.okta.com/oauth2/default',
-  clientId: '0oa8cfkn13OUIHcMz5d7',
+  clientId: '0oa8mzfnvxtTzLKVO5d7',
   redirectUri: 'http://localhost:4200/login/callback',
   scopes: ['openid', 'profile', 'email'],
 }
@@ -43,7 +45,6 @@ const oktaAuth = new OktaAuth(config);
     NavComponent,
     DashboardComponent,
     ProfileComponent,
-    EducationComponent,
     SocialLinksComponent,
     SummaryComponent,
     SkillListComponent,
@@ -55,7 +56,10 @@ const oktaAuth = new OktaAuth(config);
     EditProjectComponent,
     CourseListComponent,
     AddCourseComponent,
-    EditCourseComponent
+    EditCourseComponent,
+    DegreesListComponent,
+    AddDegreeComponent,
+    EditDegreeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,8 @@
-export interface Education {
-    id: number,
-    degreeName: string,
+export interface Degree {
+    name: string,
     subject: string,
     institute: string,
     startYear: string,
     endYear: string
 }
+

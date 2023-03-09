@@ -1,4 +1,4 @@
-h3, h6, span{
+h3, h5, h6, span{
     color:#575757
 }
 
@@ -9,4 +9,12 @@ h3, h6, span{
 
 .card{
     border-top: 5px solid #6C63FF;
+}
+
+.edit-btn{
+    background-color: #3F3D56;
+}
+
+.edit-btn:hover{
+    opacity: 0.9;
 }

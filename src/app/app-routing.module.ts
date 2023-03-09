@@ -1,3 +1,6 @@
+import { EditDegreeComponent } from './components/edit-degree/edit-degree.component';
+import { AddDegreeComponent } from './components/add-degree/add-degree.component';
+import { DegreesListComponent } from './components/degrees-list/degrees-list.component';
 import { EditCourseComponent } from './components/edit-course/edit-course.component';
 import { AddCourseComponent } from './components/add-course/add-course.component';
 import { CourseListComponent } from './components/course-list/course-list.component';
@@ -10,7 +13,6 @@ import { AddSkillComponent } from './components/add-skill/add-skill.component';
 import { SkillListComponent } from './components/skill-list/skill-list.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { SocialLinksComponent } from './components/social-links/social-links.component';
-import { EducationComponent } from './components/education/education.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
@@ -32,11 +34,6 @@ const routes: Routes = [
   {
     path:'profile',
     component:ProfileComponent,
-    canActivate:[OktaAuthGuard],
-  },
-  {
-    path:'education',
-    component:EducationComponent,
     canActivate:[OktaAuthGuard],
   },
   {
@@ -92,6 +89,21 @@ const routes: Routes = [
   {
     path:'courses/edit/:id',
     component:EditCourseComponent,
+    canActivate:[OktaAuthGuard],
+  },
+  {
+    path:'degrees',
+    component:DegreesListComponent,
+    canActivate:[OktaAuthGuard],
+  },
+  {
+    path:'degrees/add',
+    component:AddDegreeComponent,
+    canActivate:[OktaAuthGuard],
+  },
+  {
+    path:'degrees/edit/:id',
+    component:EditDegreeComponent,
     canActivate:[OktaAuthGuard],
   },
   {

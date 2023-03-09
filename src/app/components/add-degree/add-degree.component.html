@@ -1,0 +1,60 @@
+<div class="container-fluid my-3">
+    <div class="row">
+      <div class="col-md-3 text-center">
+        <img src="../../../assets/avatar.svg" alt="" class="img-fluid" width="100px">
+        <h6>{{userName}}</h6>
+      </div>
+      <div class="col-md-9">
+          <h3>Add Degree</h3>
+          <div class="col-md-6 my-3">
+              <form #AddDegreeForm="ngForm" (ngSubmit)="onSubmit()">
+                 <div class="mb-3 form-group">
+                     <label for="Name" class="form-label">Degree Name</label>
+                     <input type="text" class="form-control" id="Name" [(ngModel)]="addDegree.name" name="addDegree.name" #name="ngModel" required>
+                     <div class="form-text text-danger" *ngIf="name.touched && name.invalid">
+                       Degree Name is required
+                     </div>
+                 </div>
+                 <div class="mb-3 form-group">
+                     <label for="subject" class="form-label">Subject</label>
+                     <input type="text" class="form-control" id="subject" [(ngModel)]="addDegree.subject" name="addDegree.subject" #subject="ngModel">  
+                 </div>
+                 <div class="mb-3 form-group">
+                   <label for="Institute" class="form-label">Institute</label>
+                   <input type="text" class="form-control" id="Institute" [(ngModel)]="addDegree.institute" name="addDegree.institute" #institute="ngModel" required>
+                   <div class="form-text text-danger" *ngIf="institute.touched && institute.invalid">
+                     Institute is required
+                   </div>                  
+                 </div>
+                 <div class="mb-3 form-group">
+                     <label for="startYear" class="form-label">Start Year</label>
+                     <input type="number" class="form-control" id="startYear" [(ngModel)]="addDegree.startYear" name="addDegree.startYear" #startYear="ngModel" required min="1950" max="2050">
+                     <div class="form-text text-danger" *ngIf="startYear.touched && startYear.invalid">
+                      <div *ngIf="startYear.errors?.['required']">Start Year is Required</div>
+                      <div *ngIf="startYear.errors?.['min']">Start Year is Invalid</div>
+                      <div *ngIf="startYear.errors?.['max']">Start Year is Invalid</div>
+                     </div>                  
+                 </div>
+                 <div class="mb-3 form-group">
+                     <label for="endYear" class="form-label">End Year</label>
+                     <input type="number" class="form-control" id="endYear" [(ngModel)]="addDegree.endYear" name="addDegree.endYear" #endYear="ngModel" required min="{{addDegree.startYear}}" max="2050">
+                     <input type="checkbox" name="currentlyStudying" id="currentlyStudying" [(ngModel)]="currentlyStudying" #current="ngModel" (change)="onCurrentlyStudyingChange()">
+                     <label for="currentlyStudying">Currently Studying</label>   
+                     <div class="form-text text-danger" *ngIf="endYear.touched && endYear.invalid">
+                      <div *ngIf="endYear.errors?.['required']">End Year is Required</div>
+                      <div *ngIf="endYear.errors?.['min']">End Year is Invalid</div>
+                      <div *ngIf="endYear.errors?.['max']">End Year is Invalid</div>
+                    </div>               
+                 </div> 
+                 
+                 <button type="submit" class="btn submit-btn me-3" [disabled]="AddDegreeForm.invalid">Save</button>
+                 <a class="btn back-btn" routerLink="/degrees">Back</a>
+                </form>
+          </div>
+      </div>
+    </div>    
+  </div>
+  
+
+
+
