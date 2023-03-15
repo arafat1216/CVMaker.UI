@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { DegreeService } from './../../services/degree.service';
 import { Degree } from './../../models/degree.model';
@@ -21,7 +22,7 @@ export class AddDegreeComponent implements OnInit{
   }
   currentlyStudying: boolean = false;
   
-  constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth, private degreeService: DegreeService, private router: Router){}
+  constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth, private degreeService: DegreeService, private router: Router, private toastr: ToastrService){}
 
   async ngOnInit(){
     let userClaims = await this.oktaAuth.getUser();
@@ -42,7 +43,11 @@ export class AddDegreeComponent implements OnInit{
     this.addDegree.endYear = String(this.addDegree.endYear);
     this.degreeService.addDegree(this.addDegree).subscribe({
       next: (result) =>{
-        this.router.navigate(['/degrees']);
+        this.router.navigate(['/degrees']).then(() =>{
+          this.toastr.success('Degree Added Successfully', 'CV Maker', {
+            timeOut: 2000
+          })
+        });
       }
     })
    

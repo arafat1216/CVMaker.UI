@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Summary } from './../../models/summary.model';
 import { SocialLinks } from './../../models/social-links.model';
 import { SummaryService } from './../../services/summary.service';
@@ -22,7 +23,7 @@ export class SummaryComponent implements OnInit {
   summary: Summary = {
     description:''
   } 
-  constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth, private summaryService: SummaryService, private router: Router){}
+  constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth, private summaryService: SummaryService, private router: Router, private toastr: ToastrService){}
   
   async ngOnInit(){
     let userclaims = await this.oktaAuth.getUser();
@@ -34,7 +35,11 @@ export class SummaryComponent implements OnInit {
     this.summaryService.updateSummary(this.summary)
     .subscribe({
       next:(result)=>{
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/dashboard']).then(()=>{
+          this.toastr.success('Summary Updated Successfully', 'CV Maker', {
+            timeOut: 2000
+          })
+        });
       }
     })
   }

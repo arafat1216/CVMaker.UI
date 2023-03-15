@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { CourseService } from './../../services/course.service';
 import { Course } from './../../models/course.model';
 import { Component, OnInit, Inject } from '@angular/core';
@@ -20,7 +21,7 @@ export class EditCourseComponent implements OnInit {
   }
   id: number = 0;
 
-  constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth, private courseService: CourseService, private router: Router, private route: ActivatedRoute){}
+  constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth, private courseService: CourseService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService){}
   
   async ngOnInit(){
     let userClaims = await this.oktaAuth.getUser();
@@ -37,7 +38,11 @@ export class EditCourseComponent implements OnInit {
     this.courseService.updateCourse(this.id, this.updateCourse)
     .subscribe({
       next: (result) =>{
-        this.router.navigate(['/courses']);
+        this.router.navigate(['/courses']).then(() =>{
+          this.toastr.success('Course Updated Successfully', 'CV Maker', {
+            timeOut: 2000
+          })
+        });
       }
     })
   }

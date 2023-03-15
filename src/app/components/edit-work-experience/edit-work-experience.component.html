@@ -1,0 +1,67 @@
+<div class="container-fluid my-3">
+    <div class="row">
+      <div class="col-md-3 text-center">
+        <img src="../../../assets/avatar.svg" alt="" class="img-fluid" width="100px">
+        <h6>{{userName}}</h6>
+      </div>
+      <div class="col-md-9">
+          <h3>Add Work Experience</h3>
+          <div class="col-md-6 my-3">
+              <form #EditWorkExperienceForm="ngForm" (ngSubmit)="onSubmit()">
+                 <div class="mb-3 form-group">
+                     <label for="designation" class="form-label">Designation</label>
+                     <input type="text" class="form-control" id="designation" [(ngModel)]="updateWorkExperience.designation" name="updateWorkExperience.designation" #designation="ngModel" required>
+                     <div class="form-text text-danger" *ngIf="designation.touched && designation.invalid">
+                       Designation is required
+                     </div>
+                 </div>
+                 <div class="mb-3 form-group">
+                     <label for="company" class="form-label">Company</label>
+                     <input type="text" class="form-control" id="company" [(ngModel)]="updateWorkExperience.company" name="updateWorkExperience.company" #company="ngModel" required>
+                     <div class="form-text text-danger" *ngIf="company.touched && company.invalid">
+                        Company is required
+                     </div>  
+                 </div>
+                 <div class="mb-3 form-group" *ngFor="let task of tasks; index as i">
+                    <label for="{{task.description+i}}" class="form-label">Task</label>
+                    <input type="text" name="task{{i}}" [(ngModel)]="task.description" class="form-control" id="{{task.description+i}}" #description="ngModel" required>
+                    <div class="form-text text-danger" *ngIf="description.touched && description.invalid">
+                        Task is required
+                     </div>
+                    <button class="btn btn-sm btn-danger mt-1" (click)="removeTask(i)"><i class="bi bi-trash"></i></button>
+                    
+                 </div>
+                 <div class="mb-3 form-group">
+                    <button class="btn btn-sm btn-warning text-white" (click)="addTask($event)">Add Task</button>
+                 </div>
+                 <div class="mb-3 form-group">
+                    <label for="startDate" class="form-label">Start Date</label>
+                    <input type="month" class="form-control" id="startDate" [(ngModel)]="updateWorkExperience.startDate" name="updateWorkExperience.startDate" #startDate="ngModel">
+                    <div class="form-text text-danger" *ngIf="startDate.touched && startDate.invalid">
+                       Start Date is required
+                     </div>  
+                </div>
+                 <div class="mb-3 form-group">
+                     <label for="endDate" class="form-label">End Date</label>
+                     <input type="month" class="form-control" id="endDate" [(ngModel)]="updateWorkExperience.endDate" name="updateWorkExperience.endDate" #endDate="ngModel" required min="{{updateWorkExperience.startDate}}">
+                     <input type="checkbox" name="currentlyWorking" id="currentlyWorking" [(ngModel)]="currentlyWorking" #current="ngModel" (change)="onCurrentlyWorkingChange()">
+                     <label for="currentlyStudying">Currently Working</label>   
+                     <div class="form-text text-danger" *ngIf="endDate.touched && endDate.invalid">
+                      <div *ngIf="endDate.errors?.['required']">End Date is Required</div>
+                      <div *ngIf="endDate.errors?.['min']">End Year is Invalid</div>
+                    </div>               
+                 </div> 
+                 
+                 <button type="submit" class="btn submit-btn me-3" [disabled]="EditWorkExperienceForm.invalid">Save</button>
+                 <a class="btn back-btn" routerLink="/workexperiences">Back</a>
+                </form>
+          </div>
+      </div>
+    </div>    
+  </div>
+  
+
+
+
+
+

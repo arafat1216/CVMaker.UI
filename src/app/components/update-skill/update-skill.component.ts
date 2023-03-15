@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Skill } from './../../models/skill.model';
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,7 +17,7 @@ export class UpdateSkillComponent implements OnInit {
     name: ''
   }
   id: number = 0;
-  constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth, private skillService: SkillService, private router: Router, private route: ActivatedRoute){}
+  constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth, private skillService: SkillService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService){}
   
   async ngOnInit(){
     let userclaims = await this.oktaAuth.getUser();
@@ -33,7 +34,11 @@ export class UpdateSkillComponent implements OnInit {
   onSubmit(){
     this.skillService.updateSkill(this.id, this.updateSkill).subscribe({
       next:(result) =>{
-        this.router.navigate(['/skills']);
+        this.router.navigate(['/skills']).then(() =>{
+          this.toastr.success('Skill Update Successfully', 'CV Maker', {
+            timeOut: 2000
+          })
+        });
       }
     })
   }

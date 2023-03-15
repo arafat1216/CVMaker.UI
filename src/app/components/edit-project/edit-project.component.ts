@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Project } from './../../models/project.model';
 import { ProjectService } from './../../services/project.service';
 import { Component, OnInit, Inject } from '@angular/core';
@@ -19,7 +20,7 @@ export class EditProjectComponent implements OnInit {
   }
   id: number = 0;
 
-  constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth, private projectService: ProjectService, private router: Router, private route: ActivatedRoute){}
+  constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth, private projectService: ProjectService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService){}
   
   async ngOnInit(){
     let userClaims = await this.oktaAuth.getUser();
@@ -36,7 +37,11 @@ export class EditProjectComponent implements OnInit {
     this.projectService.updateProject(this.id, this.updateProject)
     .subscribe({
       next: (result) =>{
-        this.router.navigate(['/projects']);
+        this.router.navigate(['/projects']).then(() =>{
+          this.toastr.success('Project Updated Successfully', 'CV Maker', {
+            timeOut: 2000
+          })
+        });
       }
     })
   }

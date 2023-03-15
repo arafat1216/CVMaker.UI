@@ -28,6 +28,12 @@ import { EditCourseComponent } from './components/edit-course/edit-course.compon
 import { DegreesListComponent } from './components/degrees-list/degrees-list.component';
 import { AddDegreeComponent } from './components/add-degree/add-degree.component';
 import { EditDegreeComponent } from './components/edit-degree/edit-degree.component';
+import { WorkExperiencesListComponent } from './components/work-experiences-list/work-experiences-list.component';
+import { AddWorkExperienceComponent } from './components/add-work-experience/add-work-experience.component';
+import { EditWorkExperienceComponent } from './components/edit-work-experience/edit-work-experience.component';
+import { PreviewComponent } from './components/preview/preview.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const config = {
   issuer: 'https://dev-64581829.okta.com/oauth2/default',
@@ -59,14 +65,21 @@ const oktaAuth = new OktaAuth(config);
     EditCourseComponent,
     DegreesListComponent,
     AddDegreeComponent,
-    EditDegreeComponent
+    EditDegreeComponent,
+    WorkExperiencesListComponent,
+    AddWorkExperienceComponent,
+    EditWorkExperienceComponent,
+    PreviewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     OktaAuthModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [
     {

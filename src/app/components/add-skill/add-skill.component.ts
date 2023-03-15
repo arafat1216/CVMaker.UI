@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { SkillService } from './../../services/skill.service';
 import { Skill } from './../../models/skill.model';
@@ -16,7 +17,7 @@ export class AddSkillComponent implements OnInit{
   addSkill: Skill = {
     name: ''
   }
-  constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth, private skillService: SkillService, private router: Router){}
+  constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth, private skillService: SkillService, private router: Router, private toastr: ToastrService){}
   async ngOnInit(){
     let userclaims = await this.oktaAuth.getUser();
     this.userName  = userclaims.name;
@@ -26,7 +27,11 @@ export class AddSkillComponent implements OnInit{
     this.skillService.addSkill(this.addSkill)
     .subscribe({
       next:(result) =>{
-        this.router.navigate(['/skills']);
+        this.router.navigate(['/skills']).then(()=>{
+          this.toastr.success('Skill Added Successfully', 'CV Maker', {
+            timeOut: 2000
+          })
+        });
       }
     })
   }

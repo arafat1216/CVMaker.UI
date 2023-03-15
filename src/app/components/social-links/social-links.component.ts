@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { OKTA_AUTH } from '@okta/okta-angular';
@@ -18,7 +19,7 @@ export class SocialLinksComponent implements OnInit {
     githubUrl: ''
   };
 
-  constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth, private socialLinksService: SocialLinksService, private router: Router){}
+  constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth, private socialLinksService: SocialLinksService, private router: Router, private toastr: ToastrService){}
 
   async ngOnInit(){
     let userclaims = await this.oktaAuth.getUser();
@@ -29,7 +30,11 @@ export class SocialLinksComponent implements OnInit {
   onSubmit(){
     this.socialLinksService.updateSocialLinks(this.socialLinks).subscribe({
       next:(result) =>{
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/dashboard']).then(()=>{
+          this.toastr.success('Social Links Updated Successfully', 'CV Maker', {
+            timeOut: 2000
+          })
+        });
       }
     })
     

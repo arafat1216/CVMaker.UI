@@ -1,3 +1,7 @@
+import { PreviewComponent } from './components/preview/preview.component';
+import { EditWorkExperienceComponent } from './components/edit-work-experience/edit-work-experience.component';
+import { AddWorkExperienceComponent } from './components/add-work-experience/add-work-experience.component';
+import { WorkExperiencesListComponent } from './components/work-experiences-list/work-experiences-list.component';
 import { EditDegreeComponent } from './components/edit-degree/edit-degree.component';
 import { AddDegreeComponent } from './components/add-degree/add-degree.component';
 import { DegreesListComponent } from './components/degrees-list/degrees-list.component';
@@ -105,6 +109,26 @@ const routes: Routes = [
     path:'degrees/edit/:id',
     component:EditDegreeComponent,
     canActivate:[OktaAuthGuard],
+  },
+  {
+    path:'workexperiences',
+    component:WorkExperiencesListComponent,
+    canActivate:[OktaAuthGuard],
+  },
+  {
+    path:'workexperiences/add',
+    component:AddWorkExperienceComponent,
+    canActivate:[OktaAuthGuard],
+  },
+  {
+    path:'workexperiences/edit/:id',
+    component:EditWorkExperienceComponent,
+    canActivate:[OktaAuthGuard],
+  },
+  {
+    path:'preview',
+    component:PreviewComponent,
+    canActivate: [OktaAuthGuard]
   },
   {
     path:'login/callback',

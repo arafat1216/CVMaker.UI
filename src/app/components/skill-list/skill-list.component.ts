@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { SkillService } from './../../services/skill.service';
 import { SkillDetails } from './../../models/skill-details.model';
@@ -11,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
 export class SkillListComponent implements OnInit{
   skills: SkillDetails[] = [];
   itemId:number = 0;
-  constructor(private skillService: SkillService, private router: Router){}
+  constructor(private skillService: SkillService, private toastr: ToastrService){}
   ngOnInit(): void {
     this.getSkills();
   }
@@ -32,6 +33,9 @@ export class SkillListComponent implements OnInit{
   onConfirm(){
     this.skillService.deleteSkill(this.itemId).subscribe({
       next:(result)=>{
+        this.toastr.success('Skill Deleted Successfully', 'CV Maker', {
+          timeOut: 2000
+        })
         this.ngOnInit();
       }
     })

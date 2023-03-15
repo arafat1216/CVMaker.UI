@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { CourseService } from './../../services/course.service';
 import { CourseDetails } from './../../models/course-details.model';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +12,7 @@ export class CourseListComponent implements OnInit{
   courses: CourseDetails[] = [];
   itemId: number = 0;
 
-  constructor(private courseService: CourseService){}
+  constructor(private courseService: CourseService, private toastr: ToastrService){}
   
   ngOnInit(): void {
     this.getCourses();
@@ -33,6 +34,9 @@ export class CourseListComponent implements OnInit{
   onConfirm(){
     this.courseService.deleteCourse(this.itemId).subscribe({
       next: (result) =>{
+        this.toastr.success('Course Deleted Successfully', 'CV Maker', {
+          timeOut: 2000
+        })
         this.ngOnInit();
       }
     })

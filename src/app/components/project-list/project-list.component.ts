@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { ProjectService } from './../../services/project.service';
 import { ProjectDetails } from './../../models/project-details.model';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +12,7 @@ export class ProjectListComponent implements OnInit {
   projects: ProjectDetails[] = [];
   itemId: number = 0;
 
-  constructor(private projectService: ProjectService){}
+  constructor(private projectService: ProjectService, private toastr: ToastrService){}
 
   ngOnInit(): void {
     this.getProjects();
@@ -34,6 +35,9 @@ export class ProjectListComponent implements OnInit {
   onConfirm(){
     this.projectService.deleteProject(this.itemId).subscribe({
       next: (result) =>{
+        this.toastr.success('Project Deleted Successfully', 'CV Maker', {
+          timeOut: 2000
+        })
         this.ngOnInit();
       }
     })

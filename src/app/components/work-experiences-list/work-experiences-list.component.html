@@ -1,0 +1,59 @@
+<div class="container-fluid my-3">
+    <div class="header d-flex mb-3">
+        <h3>Work Experiences List</h3>
+        <div class="ms-auto">
+            <a class="btn add-btn" routerLink="/workexperiences/add">Add WorkExperience</a>
+        </div> 
+    </div>
+    <div class="course-details d-md-flex row">
+     <div class="col-md-4 mb-5" *ngFor="let item of workExperiences">
+         <div class="card shadow">
+             <div class=" ms-auto">
+                 <a class="btn  m-2 edit-btn" [routerLink]="['/workexperiences','edit',item.id]">
+                    <i class="bi bi-pencil text-white"></i>
+                </a>
+                <button type="button" class="btn btn-danger m-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onDelete(item.id)">
+                    <i class="bi bi-trash"></i>
+                </button>
+             </div>
+             <div class="card-body">
+                <h5>{{item.designation}}</h5> 
+                <span><b>Company:</b> {{item.company}}</span><br>
+                <span><b>Tasks:</b></span><br>
+                <ul *ngFor="let task of item.tasks">
+                    <li class="task">{{task}}</li>
+                    
+                </ul>
+                <span><b>Start Date:</b> {{item.startDate}}</span><br>
+                <span><b>End Date:</b> {{item.endDate}}</span><br>
+             </div>
+           </div>
+         </div> 
+         <div class="alert alert-danger w-50 mx-auto" role="alert" *ngIf="!workExperiences.length">
+            No Work Experience Found
+        </div>
+    </div>
+     <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are You Sure You Want To Delete This Item?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="onConfirm()"  data-bs-dismiss="modal">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+ </div>
+ 
+ 
+
+

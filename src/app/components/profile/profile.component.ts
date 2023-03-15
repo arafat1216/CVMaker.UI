@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { ProfileService } from './../../services/profile.service';
 import { Component, Inject } from '@angular/core';
@@ -19,7 +20,7 @@ export class ProfileComponent {
     phoneNo:'',
     address:''
   }
-  constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth, private profileService: ProfileService, private router:Router) {}
+  constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth, private profileService: ProfileService, private router:Router, private toastr: ToastrService) {}
   
   async ngOnInit() {
     let userclaims = await this.oktaAuth.getUser();
@@ -41,7 +42,11 @@ export class ProfileComponent {
     this.profileService.updateProfile(this.profile)
     .subscribe({
       next:(result) =>{
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/dashboard']).then(()=>{
+          this.toastr.success('Profile Updated Successfully', 'CV Maker', {
+            timeOut: 2000
+          })
+        });
       }
     })
   }
