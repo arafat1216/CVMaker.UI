@@ -7,3 +7,12 @@
     overflow-x: hidden;
     color:#3F3D56;
 }
+
+@media screen and (max-width: 500px){
+    #cv{
+        font-size: 5px;
+    }
+    h3,h6{
+        font-size: 5px;
+    }
+}

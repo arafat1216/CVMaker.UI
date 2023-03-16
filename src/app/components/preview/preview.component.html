@@ -4,7 +4,7 @@
             <button class="btn download-btn" (click)="downlaodPdf()"><i class="bi bi-file-arrow-down"></i> Download</button>
         </div>
     </div>
-    <div class="cv container" id="cv">
+    <div class="cv container shadow" id="cv">
         <!-- profile start -->
         <div class="row profile border-bottom">
             <div class="name text-center">
@@ -32,7 +32,7 @@
         </div> 
         <!-- profile end -->
         <!-- summary start -->
-        <div class="row summary">
+        <div class="row summary mt-2">
             <h3 class="text-uppercase">Professional Summary</h3>
             <p>{{summary.description}}</p>
         </div>
@@ -75,8 +75,8 @@
                     <h3 class="text-uppercase">Projects</h3>
                     <div *ngFor="let item of projects">
                         <h6>{{item.name}}</h6>
-                        <p>{{item.description}}</p>
-                        <p *ngIf="item.link.length">{{item.link}}</p>
+                        <p><b>Description:</b> {{item.description}}</p>
+                        <p *ngIf="item.link.length"><b>Link:</b> {{item.link}}</p>
                     </div>
                 </div>
                 <!-- projects end -->
