@@ -1,12 +1,12 @@
 <div class="container-fluid">
     <div class="d-flex my-3">
         <div class="ms-auto">
-            <button class="btn download-btn" (click)="downlaodPdf()"><i class="bi bi-file-arrow-down"></i> Download</button>
+            <button class="btn download-btn" (click)="printPdf()"><i class="bi bi-file-arrow-down"></i> Download</button>
         </div>
     </div>
-    <div class="cv container shadow" id="cv">
+    <div class="container shadow" id="cv">
         <!-- profile start -->
-        <div class="row profile border-bottom">
+        <div class="row profile border-bottom border-secondary">
             <div class="name text-center">
                 <h3>{{profile.fullName}}</h3> 
             </div>
@@ -29,77 +29,71 @@
                     </ul>
                 </div>
             </div>
-        </div> 
+        </div>
         <!-- profile end -->
         <!-- summary start -->
         <div class="row summary mt-2">
-            <h3 class="text-uppercase">Professional Summary</h3>
+            <h3 class="text-uppercase text-center border-bottom border-secondary pb-2">Professional Summary</h3>
             <p>{{summary.description}}</p>
         </div>
         <!-- summary end -->
-        <div class="row">
-            <div class="col-6 left">
-                <!-- work experience start -->
-                <div class="row work-experiences">
-                    <h3 class="text-uppercase">Work Experiences</h3>
-                    <div *ngFor="let item of workExperiences">
-                        <div class="d-flex justify-content-between">
-                            <h6>{{item.designation}}</h6>
-                            <h6>{{item.startDate}} - {{item.endDate}}</h6>
-                        </div>
-                        <div class="mb-3">
-                            <p class="m-1">{{item.company}}</p>
-                            <ul *ngFor="let task of item.tasks" class="m-0">
-                                <li>{{task}}</li>
-                            </ul>
-                        </div>
-                    </div>
+        <!-- work experience start -->
+        <div class="row work-experiences mt-2">
+            <h3 class="text-uppercase text-center border-bottom border-secondary pb-2">Work Experiences</h3>
+            <div *ngFor="let item of workExperiences">
+                <div class="d-flex justify-content-between">
+                    <h6>{{item.designation}}</h6>
+                    <h6>{{item.startDate}} - {{item.endDate}}</h6>
                 </div>
-                <!-- work experience end -->
-                <!-- education start -->
-                <div class="row education">
-                    <h3 class="text-uppercase">Education</h3>
-                    <div *ngFor="let item of degrees">
-                        <div class="d-flex justify-content-between">
-                            <h6>{{item.name}} <span *ngIf="item.subject.length">({{item.subject}})</span></h6>
-                            <h6>{{item.startYear}} - {{item.endYear}}</h6>
-                        </div>
-                        <div class="mb-3">
-                            <p>{{item.institute}}</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- education end -->
-                <!-- projects start -->
-                <div class="row projects">
-                    <h3 class="text-uppercase">Projects</h3>
-                    <div *ngFor="let item of projects">
-                        <h6>{{item.name}}</h6>
-                        <p><b>Description:</b> {{item.description}}</p>
-                        <p *ngIf="item.link.length"><b>Link:</b> {{item.link}}</p>
-                    </div>
-                </div>
-                <!-- projects end -->
-            </div>
-            <div class="col-5 offset-1 right">
-                <!-- skill start -->
-                <div class="row skills">
-                    <h3 class="text-uppercase">Skills</h3>
-                    <ul class="list-inline" *ngFor="let item of skills">
-                        <li class="list-inline-item">{{item.name}}</li>
+                <div class="mb-3">
+                    <p class="m-1">{{item.company}}</p>
+                    <ul *ngFor="let task of item.tasks" class="m-0">
+                        <li>{{task}}</li>
                     </ul>
                 </div>
-                <!-- skill end -->
-                <!-- courses-start -->
-                <div class="row courses">
-                    <h3 class="text-uppercase">Courses</h3>
-                    <div *ngFor="let item of courses">
-                        <h6>{{item.name}}</h6>
-                        <p *ngIf="item.institute.length">{{item.institute}}</p>
-                    </div>
+            </div>
+        </div>
+        <!-- work experience end -->
+        <!-- skill start -->
+        <div class="row skills mt-2 mb-4">
+            <h3 class="text-uppercase text-center border-bottom border-secondary pb-2">Skills</h3>
+            <div class="list-inline">
+                <li class="list-inline-item bg-secondary text-white rounded px-2" *ngFor="let item of skills">{{item.name}}</li>
+            </div>
+        </div>
+        <!-- skill end -->
+        <!-- education start -->
+        <div class="row education mt-3">
+            <h3 class="text-uppercase text-center border-bottom border-secondary pb-2">Education</h3>
+            <div *ngFor="let item of degrees">
+                <div class="d-flex justify-content-between">
+                    <h6>{{item.name}} <span *ngIf="item.subject.length">({{item.subject}})</span></h6>
+                    <h6>{{item.startYear}} - {{item.endYear}}</h6>
                 </div>
-                <!-- courses-end -->
-            </div>    
-        </div> 
-    </div>
+                <div class="mb-3">
+                    <p>{{item.institute}}</p>
+                </div>
+            </div>
+        </div>
+        <!-- education end -->
+        <!-- projects start -->
+        <div class="row projects mt-2">
+            <h3 class="text-uppercase text-center border-bottom border-secondary pb-2">Projects</h3>
+            <div *ngFor="let item of projects">
+                <h6>{{item.name}}</h6>
+                <p class="m-0"><b>Description:</b> {{item.description}}</p>
+                <p *ngIf="item.link.length"><b>Link:</b> {{item.link}}</p>
+            </div>
+        </div>
+        <!-- projects end -->
+        <!-- courses-start -->
+        <div class="row courses mt-2">
+            <h3 class="text-uppercase text-center border-bottom border-secondary pb-2">Courses</h3>
+            <div *ngFor="let item of courses">
+                <h6>{{item.name}}</h6>
+                <p *ngIf="item.institute.length">{{item.institute}}</p>
+            </div>
+        </div>
+        <!-- courses-end -->
+    </div>    
 </div>

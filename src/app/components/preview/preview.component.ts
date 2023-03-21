@@ -1,3 +1,4 @@
+import { CVService } from './../../services/cv.service';
 import { ProjectService } from './../../services/project.service';
 import { ProjectDetails } from './../../models/project-details.model';
 import { CourseService } from './../../services/course.service';
@@ -44,7 +45,7 @@ export class PreviewComponent implements OnInit{
   courses: CourseDetails[] = [];
   projects: ProjectDetails[] = [];
 
-  constructor(private profileService: ProfileService, private socialLinksService: SocialLinksService, private summaryService: SummaryService, private workExperienceService: WorkExperienceService, private skillService: SkillService, private degreeService: DegreeService, private courseService: CourseService, private projectService: ProjectService){}
+  constructor(private profileService: ProfileService, private socialLinksService: SocialLinksService, private summaryService: SummaryService, private workExperienceService: WorkExperienceService, private skillService: SkillService, private degreeService: DegreeService, private courseService: CourseService, private projectService: ProjectService, private cvService: CVService){}
   
   ngOnInit(): void {
     this.getProfile();
@@ -148,15 +149,17 @@ export class PreviewComponent implements OnInit{
     }
   }
 
-  downlaodPdf(){
-    let data:any = document.getElementById('cv');
-    html2canvas(data).then((canvas) =>{
-      const contentDataURL = canvas.toDataURL('image/png')
-      let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
-      var width = pdf.internal.pageSize.getWidth();
-      var height = canvas.height * width / canvas.width;
-      pdf.addImage(contentDataURL, 'PNG', 0, 0, width, height)
-      pdf.save('cv.pdf'); // Generated PDF
+  printPdf(){
+    this.cvService.downloadCV().subscribe({
+      next: (result) =>{
+        let blob: Blob = result.body as Blob;
+        let url = window.URL.createObjectURL(blob);
+        
+        let a = document.createElement('a');
+        a.download = 'cv.pdf';
+        a.href = url;
+        a.click()
+      }
     })
   }
 }
